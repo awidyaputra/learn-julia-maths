@@ -52,7 +52,7 @@ plotly()
 # ╔═╡ 535328ce-0165-11eb-1c02-05c4916085b2
 md"""
 ## Creating an interactive cosine graph
-Define function $$y = f(x) = A sin(x + \phi)$$. With
+Define function $$y = f(x) = A cos(x + \phi)$$. With
 
 A = Amplitude
 
