@@ -52,16 +52,11 @@ plotly()
 # ╔═╡ 535328ce-0165-11eb-1c02-05c4916085b2
 md"""
 ## Creating an interactive cosine graph
-Define function $$y = f(x) = A cos(x + \phi)$$. With
+Define function $$y = f(x) = A cos(Fx + \phi)$$. With
 
 A = Amplitude
 
 ϕ = Phase"""
-
-# ╔═╡ a7d872be-016a-11eb-1bdf-3d47863d049e
-function y(x, A, ϕ)
-	return A * cos(x + ϕ)
-end
 
 # ╔═╡ e85d1d4e-016a-11eb-243b-e51c08ae32e1
 md"Let's plot $$y = f(x)$$ for $$x = [-2π, 2π]$$"
@@ -79,7 +74,7 @@ step = 0.01
 x = start:step:stop
 
 # ╔═╡ 024ce21e-016d-11eb-1ff9-658bea727c61
-md"We can make the plot interactive by creating sliders for Amplitude and Phase"
+md"We can make the plot interactive by creating sliders for Amplitude, Frequency, and Phase"
 
 # ╔═╡ 5b5667b2-016e-11eb-3c7f-d3e86551d009
 md"""
@@ -87,10 +82,19 @@ Amplitude slider:
 
 $(@bind A Slider(-5:0.2:5, default=1))
 
+Frequency slider:
+
+$(@bind F Slider(0:0.5:5, default=1))
+
 Phase slider:
 
 $(@bind phi Slider(-5:0.2:5, default=0))
 """
+
+# ╔═╡ a7d872be-016a-11eb-1bdf-3d47863d049e
+function y(x, A, ϕ)
+	return A * cos(F * x + ϕ)
+end
 
 # ╔═╡ fb1fc39e-016c-11eb-11aa-737ab19e5a2e
 Y = [y(xi,A,phi) for xi=x]
@@ -101,6 +105,8 @@ plot(x, Y)
 # ╔═╡ bcdad72a-016e-11eb-0886-0963a3ccb005
 md"""
 Amplitude = $A
+
+Frequency = $F
 
 Phase = $phi"""
 
@@ -116,13 +122,13 @@ Phase = $phi"""
 # ╟─ef4ffc8e-0165-11eb-35bd-61abd2f54676
 # ╠═535328ce-0165-11eb-1c02-05c4916085b2
 # ╠═a7d872be-016a-11eb-1bdf-3d47863d049e
-# ╠═e85d1d4e-016a-11eb-243b-e51c08ae32e1
-# ╠═c4eea27c-016c-11eb-1900-ed0a5ac9216f
-# ╠═cfdeabb4-016c-11eb-2e8e-ad131296c35b
-# ╠═d4fbc7f8-016c-11eb-373b-6168bac120c2
-# ╠═ebbff6ee-016c-11eb-03b3-c9b08985b88c
-# ╠═fb1fc39e-016c-11eb-11aa-737ab19e5a2e
+# ╟─e85d1d4e-016a-11eb-243b-e51c08ae32e1
+# ╟─c4eea27c-016c-11eb-1900-ed0a5ac9216f
+# ╟─cfdeabb4-016c-11eb-2e8e-ad131296c35b
+# ╟─d4fbc7f8-016c-11eb-373b-6168bac120c2
+# ╟─ebbff6ee-016c-11eb-03b3-c9b08985b88c
+# ╟─fb1fc39e-016c-11eb-11aa-737ab19e5a2e
 # ╠═35f2c9ee-016d-11eb-3da6-ed6e3c148465
-# ╠═024ce21e-016d-11eb-1ff9-658bea727c61
+# ╟─024ce21e-016d-11eb-1ff9-658bea727c61
 # ╟─5b5667b2-016e-11eb-3c7f-d3e86551d009
 # ╟─bcdad72a-016e-11eb-0886-0963a3ccb005
